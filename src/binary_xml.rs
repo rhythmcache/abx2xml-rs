@@ -354,7 +354,7 @@ impl<R: Read + Seek, W: Write> BinaryXmlDeserializer<R, W> {
             TYPE_BYTES_HEX => {
                 let length = self.input.read_short()?;
                 let bytes = self.input.read_bytes(length)?;
-                write!(self.output, "{}", hex::encode_upper(&bytes))?;
+                write!(self.output, "{}", hex::encode(&bytes))?;
             }
             TYPE_BYTES_BASE64 => {
                 let length = self.input.read_short()?;
