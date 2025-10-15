@@ -347,7 +347,11 @@ impl<R: Read + Seek, W: Write> BinaryXmlDeserializer<R, W> {
             }
             TYPE_DOUBLE => {
                 let value = self.input.read_double()?;
-                write!(self.output, "{}", value)?;
+                if value.fract() == 0.0 && value.is_finite() {
+                    write!(self.output, "{:.1}", value)?; // force at least one decimal place
+                } else {
+                    write!(self.output, "{}", value)?;
+                }
             }
             TYPE_BOOLEAN_TRUE => {
                 write!(self.output, "true")?;
