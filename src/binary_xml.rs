@@ -327,7 +327,11 @@ impl<R: Read + Seek, W: Write> BinaryXmlDeserializer<R, W> {
             }
             TYPE_INT_HEX => {
                 let value = self.input.read_int()?;
-                write!(self.output, "{:x}", value)?;
+                if value == -1 {
+                    write!(self.output, "{}", value)?;
+                } else {
+                    write!(self.output, "{:x}", value as u32)?;
+                }
             }
             TYPE_LONG => {
                 let value = self.input.read_long()?;
@@ -335,7 +339,11 @@ impl<R: Read + Seek, W: Write> BinaryXmlDeserializer<R, W> {
             }
             TYPE_LONG_HEX => {
                 let value = self.input.read_long()?;
-                write!(self.output, "{:x}", value)?;
+                if value == -1 {
+                    write!(self.output, "{}", value)?;
+                } else {
+                    write!(self.output, "{:x}", value as u64)?;
+                }
             }
             TYPE_FLOAT => {
                 let value = self.input.read_float()?;
