@@ -18,7 +18,7 @@ Arguments:
 Options:
   -i, --in-place  Overwrite input file with converted output
 ```
-
+<!--
 ## Library Usage
 
 ```rust
@@ -61,6 +61,7 @@ let writer = stdout();
 let mut deserializer = BinaryXmlDeserializer::new(reader, writer)?;
 deserializer.deserialize()?;
 ```
+-->
 
 ### Sources
 - [xml2abx](https://github.com/rhythmcache/xml2abx-rs)
