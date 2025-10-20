@@ -98,7 +98,7 @@ jobs:
       - name: Build
         run: cargo build --release --target ${{ matrix.target }}
         env:
-          RUSTFLAGS: -C target-feature=+crt-static -C link-arg=-static -C link-arg=-static
+          RUSTFLAGS: -C target-feature=+crt-static -C link-arg=-static -C link-arg=-no-pie
       
       - name: Strip binary
         run: |
